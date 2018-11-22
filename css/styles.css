@@ -1,0 +1,76 @@
+@font-face{
+    name: "open-sans";
+    src: url("../fonts/open-sans/OpenSans-Regular.ttf");
+}
+
+*{
+    margin:0px;
+    font-family: OpenSans;
+    padding:0px;
+}
+
+body{
+    background-image: url("../img/background-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-card{
+    padding:30px 0 70px 0;
+    box-shadow: 0 0 10px #808080;
+    width:40%;
+    margin:20px auto;
+    background: #0062cc;
+}
+
+.form-card h1, .form-card h2{
+    text-align: center;
+}
+
+.form-card *{
+  padding:0 10px;
+  margin-top:20px;
+  color:#fff;
+}
+
+.form-card label{
+
+  font-size: 18px;
+  border:1px solid #000;
+  display: none;
+}
+
+.form-card input{
+    margin:0px auto;
+    border-radius: 5px;
+    width:75%;
+    height:35px;
+    border: none;
+    /* border:1px solid #808080; */
+    outline:none;
+    margin-left:10%;
+    box-shadow: 0 0 0 #fff;
+    color:#000;
+}
+
+.form-card .btn-submit{
+    background: none;
+    width:50%;
+    height: 35px;
+    color:#fff;
+    cursor: pointer;
+    border:1px solid #fff;
+    transition: .5s ease-in;
+}
+
+.form-card .btn-submit:hover{
+    background: #fff;
+    color:#000;
+}
+
+input:required {    border: 1px solid #ffc107; }
+
+
+.form-card input:hover, .form-card input:focus{
+
+}
