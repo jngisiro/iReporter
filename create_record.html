@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iReporter: Create Record</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="../static/js/scripts.js"></script>
+    </head>
+    <body>
+      <div class="container">
+          <div class="panel-heading">
+              <h3>Create a new Record</h3>
+              <a href="dashboard.html">Back</a>
+          </div>
+          <p>Please fill in the required fields before submitting to create a new record</p>
+
+          <form method="post" action="#">
+
+              <fieldset>
+                  <legend>Select Record Type</legend>
+                  <input name="record-type" type="radio" checked value="red-flag"/>Red Flag Record
+                  <input type="radio"name="record-type" value="red-flag"/>Intevention Record
+              </fieldset>
+
+              <!--#Red Flag Record Fields-------------------------------------------------------------------------------------------------->
+              <div id="red_flag" class="hide">
+                  <fieldset>
+                      <legend>Description</legend>
+                      <div class="form-set">
+                          <!-- <label for="title">Title of Record</label> -->
+                          <input type="text" placeholder="Enter title of suspect (Required)" name="title" />
+                      </div>
+                      <div class="form-set">
+                          <!-- <label for="title">Title of Record</label> -->
+                          <input type="text" placeholder="Enter position held by suspect (Required)" name="title" />
+                      </div>
+                      <div class="form-set">
+                          <select class="" name="">
+                            <option value="">Select type of office held by suspect</option>
+                            <option value="">Finance</option>
+                            <option value="">Eduction</option>
+                            <option value="">Sports</option>
+                            <option value="">Other</option>
+                          </select>
+                      </div>
+                  </fieldset><br><br>
+
+                  <fieldset>
+                      <legend>Decribe Incident</legend>
+                      <div class="form-set">
+                          <input type="text" placeholder="Enter title of corruption incident" name="title" />
+                      </div>
+
+                      <div class="form-set">
+                          <textarea name="name" rows="8" cols="80" placeholder="Please enter a short description of the incident"></textarea>
+                      </div>
+                  </fieldset>
+
+                  <fieldset>
+                      <legend>Addition Information (Optional)</legend>
+                      <div class="form-set">
+                          <label for="">Add a relevant Image</label>
+			                    <input type="file" name="photo" accept="image/*">
+                      </div>
+                      <div class="form-set">
+                          <label for="">Add a relevant Video</label>
+			                    <input type="file" name="video" accept="video/*">
+                      </div>
+                      <div class="form-set">
+                          <label for="">Add location of incident</label>
+                      </div>
+                  </fieldset>
+              </div>
+              <!--#End of Red Flag Records---------------------------------------------------------------------------------------------->
+
+              <!--#Intevention Recods -------------------------------------------------------------------------------------------------->
+              <div id="Intevention">
+
+                  <fieldset>
+                      <legend>Description of Issue</legend>
+                      <div class="form-set">
+                          <!-- <label for="title">Title of Record</label> -->
+                          <input type="text" placeholder="Enter title of Issue (Required)" name="title" />
+                      </div>
+                      <div class="form-set">
+                          <!-- <label for="title">Title of Record</label> -->
+                          <input type="text" placeholder="Enter position held by suspect (Required)" name="title" />
+                      </div>
+                  </fieldset>
+
+              </div>
+              <!--#End of Intervention Records ----------------------------------------------------------------------------------------->
+
+              <div class="form-set">
+                  <input type="button" class="btn" value="Submit Record">
+                  <input type="button" class="btn" value="Clear Records">
+              </div>
+          </form>
+      <div>
+    </body>
+  </html>
