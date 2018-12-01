@@ -2,4 +2,7 @@
  iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public.
 
 ## PIVOTAL TRACKER PROJECT
-[iReporter](https://www.google.com)
+[iReporter](https://www.pivotaltracker.com/n/projects/2227309) on Pivotal Tracker
+
+## GITHUB PAGES
+[iReporter](https://jngisiro.github.io/) on Github Pages
