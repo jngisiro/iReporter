@@ -3,6 +3,12 @@ language: python
 python:
     - "3.6.0"
 
-install: "pip install -r requirements.txt"
+install: 
+    - "pip install -r requirements.txt"
+    - "pip install pytest pytest-cov"
+    - "pip install coveralls"
 
-script: "python testAPI.py test"
+
+script: "pytest --cov=testAPI"
+
+after_success: "coveralls"
