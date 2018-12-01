@@ -3,16 +3,6 @@ language: python
 python:
     - "3.6.0"
 
-script:
-    - pytest
+install: "pip install -r requirements.txt"
 
-    - coverage run --source app -m py.test
-
-    - coverage report -m
-
-    - codeclimate-test-reporter --file .coverage
-
-after_success:
-  - coveralls
-  
-  - codeclimate-test-reporter
+script: "pytest incident.py"
