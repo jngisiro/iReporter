@@ -9,7 +9,6 @@ python:
 
 install: 
     - "pip install -r requirements.txt"
-    - "codeclimate-test-reporter"
 
 script: 
     - "python testAPI.py test"
