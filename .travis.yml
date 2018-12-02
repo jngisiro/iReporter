@@ -13,3 +13,5 @@ install:
 script: 
     - "python testAPI.py test"
     - "coverage run testAPI.py test"
+
+after_success: "coveralls"
