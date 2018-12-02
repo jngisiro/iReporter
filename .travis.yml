@@ -12,4 +12,4 @@ install:
 
 script: 
     - "python testAPI.py test"
-    - "coverage testAPI.py"
+    - "coverage run testAPI.py test"
