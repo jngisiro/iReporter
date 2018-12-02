@@ -7,21 +7,21 @@ import sys
 TEST_CLIENT = incident.app.test_client()
 
     
-# def test_create_incident(self):
-#     """ Add a new red-flag """
-#     response = self.app.post("/red_flags/", 
-#                     content_type = "application/json",
-#                     data = jsonify({
-#                         "title" : "Theft at UNRA Banda",
-#                         "createdBy" : 5,
-#                         "type" : "red-flag",
-#                         "location" : "LAT234, LOG342",
-#                         "status" : "draft",
-#                         "Images" : ["img/image1.jpg", "img/image2.jpg"],
-#                         "Videos" : ["vid/video1.mp4", "vid/video2.jpg"],
-#                         "comment" : "It is a long established fact that a reader will be distracted by the readable content of a page"
-#                                 }))
-#     assert response.status_code == 200
+def test_create_incident():
+    """ Add a new red-flag """
+    # response = TEST_CLIENT.post("/api/v1/red_flags/",
+    #                 data = json.dumps({
+    #                     "title" : "Theft at UNRA Banda",
+    #                     "createdBy" : 5,
+    #                     "type" : "red-flag",
+    #                     "location" : "LAT234, LOG342",
+    #                     "status" : "draft",
+    #                     "Images" : ["img/image1.jpg", "img/image2.jpg"],
+    #                     "Videos" : ["vid/video1.mp4", "vid/video2.jpg"],
+    #                     "comment" : "It is a long established fact that a reader will be distracted by the readable content of a page"
+    #                             }))
+    
+    # assert response.get_json()["data"][0]["message"] == "Created red-flag record with id"
 
 def test_get_all_incidents():
     response = TEST_CLIENT.get("/api/v1/red_flags/")
@@ -36,9 +36,9 @@ def test_get_specific_incident():
     assert response.get_json()["data"]["title"] == incident.RED_FLAGS[0]["title"]
 
 # def test_edit_incident(self):
-#     response = self.app.patch("/red_flags/", 
+#     response = TEST_CLIENT.patch("/red_flags/", 
 #                     content_type = "application/json",
-#                     data = jsonify({
+#                     data = jsonify({  
 #                         "title" : "Theft a UNRA Kyambogo",
 #                         "image" : "corrupt.jpg",
 #                         "video" : "corrupt.mp4"
@@ -48,3 +48,4 @@ def test_get_specific_incident():
 def test_delete_incident():
     response = TEST_CLIENT.delete("/api/v1/red_flags/1/")
     assert response.status_code == 200
+    assert response.get_json()["data"][0]["message"] == "red-flag record has been deleted for id 1"
