@@ -1,8 +1,16 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=f32ac3f461d75d62daaf33dc4949a148053d1c095bdb57fd2d84a81362faf100
+
 language: python
 
 python:
     - "3.6.0"
 
-install: "pip install -r requirements.txt"
+install: 
+    - "pip install -r requirements.txt"
+    - "pip install pytest-cov"
 
-script: "python testAPI.py test"
+script: 
+    - "python testAPI.py test"
+    - "py.test testAPI.py --cov=sample.py"
