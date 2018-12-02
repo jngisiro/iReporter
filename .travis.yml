@@ -13,4 +13,4 @@ install:
 
 script: 
     - "python testAPI.py test"
-    - "codeclimate-test-reporter"
+    - "coverage testAPI.py"
