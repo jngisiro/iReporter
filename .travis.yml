@@ -13,4 +13,4 @@ install:
 
 script: 
     - "python testAPI.py test"
-    - "py.test testAPI.py --cov=."
+    - "py.test testAPI.py"
