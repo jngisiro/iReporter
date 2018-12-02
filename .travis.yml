@@ -13,4 +13,3 @@ install:
 
 script: 
     - "python testAPI.py test"
-    - "py.test testAPI.py"
