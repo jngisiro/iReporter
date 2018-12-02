@@ -46,7 +46,7 @@ RED_FLAGS = [{
   
 
 #Add New Red Flag -------------------------------------------------------------------------
-@app.route("/red_flags/", methods=["POST"])
+@app.route("/api/v1/red_flags/", methods=["POST"])
 def add_red_flag():
     """ Should return Status Code:201 if a Red Flag is created"""
 
@@ -72,7 +72,7 @@ def add_red_flag():
     #return jsonify({"status" : 404, "data" : "Not authorized"})
 
 #Get all Red Flags ------------------------------------------------------------------------
-@app.route("/red_flags/", methods=["GET"])
+@app.route("/api/v1/red_flags/", methods=["GET"])
 def get_all_red_flags():
     """ Should return Status Code:200 along with all the Red Flags |
         Code:404 if there are no Red Flags
@@ -80,7 +80,7 @@ def get_all_red_flags():
     return jsonify({"status" : 200, "data" : RED_FLAGS}) 
 
 #Get specific Red Flag by id ---------------------------------------------------------------
-@app.route("/red_flags/<int:id>/", methods=["GET"])
+@app.route("/api/v1/red_flags/<int:id>/", methods=["GET"])
 def get_specific_red_flag(id):
     """ Should return Status Code:200 along with the requested Red Flag |
         Code:404 if there is no Red Flag for the specified id
@@ -92,7 +92,7 @@ def get_specific_red_flag(id):
     
 
 #Edit Specific Red Flag ------------------------------------------------------------------
-@app.route("/red_flags/<int:id>/", methods=["PATCH"])
+@app.route("/api/v1/red_flags/<int:id>/", methods=["PATCH"])
 def edit_specific_red_flag(id):
     """ Should return Status Code:200 along with the requested Red Flag |
         Code:404 if there is no Red Flag for the specified id
@@ -117,7 +117,7 @@ def edit_specific_red_flag(id):
                     })
 
 #Delete Specific Red Flag ----------------------------------------------------------------
-@app.route("/red_flags/<int:id>", methods=["DELETE"])
+@app.route("/api/v1/red_flags/<int:id>/", methods=["DELETE"])
 def delete_specific_red_flag(id):
     """ Should return Status Code:200 along with the requested Red Flag |
         Code:404 if there is no Red Flag for the specified id

@@ -24,13 +24,13 @@ TEST_CLIENT = incident.app.test_client()
 #     assert response.status_code == 200
 
 def test_get_all_incidents():
-    response = TEST_CLIENT.get("/red_flags/")
+    response = TEST_CLIENT.get("/api/v1/red_flags/")
     assert response.status_code == 200
     assert len(response.get_json()["data"]) == len(incident.RED_FLAGS)
     assert response.get_json()["data"][0]["title"] == incident.RED_FLAGS[0]["title"]
 
 def test_get_specific_incident():
-    response = TEST_CLIENT.get("/red_flags/1/")
+    response = TEST_CLIENT.get("/api/v1/red_flags/1/")
     assert response.status_code == 200
     assert len(response.get_json()["data"]) == len(incident.RED_FLAGS[1])
     assert response.get_json()["data"]["title"] == incident.RED_FLAGS[1]["title"]
@@ -46,5 +46,5 @@ def test_get_specific_incident():
     #assert response.status_code == 200
 
 def test_delete_incident():
-    response = TEST_CLIENT.delete("/red_flags/1/")
-    #assert response.status_code == 200
+    response = TEST_CLIENT.delete("/api/v1/red_flags/1/")
+    assert response.status_code == 200
