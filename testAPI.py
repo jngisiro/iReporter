@@ -32,8 +32,8 @@ def test_get_all_incidents():
 def test_get_specific_incident():
     response = TEST_CLIENT.get("/api/v1/red_flags/1/")
     assert response.status_code == 200
-    assert len(response.get_json()["data"]) == len(incident.RED_FLAGS[1])
-    assert response.get_json()["data"]["title"] == incident.RED_FLAGS[1]["title"]
+    assert len(response.get_json()["data"]) == len(incident.RED_FLAGS[0])
+    assert response.get_json()["data"]["title"] == incident.RED_FLAGS[0]["title"]
 
 # def test_edit_incident(self):
 #     response = self.app.patch("/red_flags/", 
