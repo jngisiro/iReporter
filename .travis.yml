@@ -10,7 +10,7 @@ install:
     - "pip install coveralls"
 
 script: 
-    - "pytest"
+    - "pytest testAPI.py"
     - "coverage run --source=incident testAPI.py test"
     - "nosetests"
 
