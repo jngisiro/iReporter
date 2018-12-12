@@ -13,6 +13,6 @@ install:
 
 script: 
     - "python testAPI.py test"
-    - "pytest testAPI --cov=incident --cov-report term-missing"
+    - "pytest testAPI.py --cov=incident.py --cov-report term-missing"
 
 after_success: "coveralls"
