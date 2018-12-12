@@ -1,18 +1,13 @@
-env:
-  global:
-    - CC_TEST_REPORTER_ID=f32ac3f461d75d62daaf33dc4949a148053d1c095bdb57fd2d84a81362faf100
-
 language: python
-
 python:
-    - "3.6.0"
-
-install: 
-    - "pip install -r requirements.txt"
-    - "pip install coveralls"
-
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+  - pip install python-coveralls
+  - pip install coverage
+  
+virtualenv:
 script: 
-    - "python testAPI.py test"
-    - "- pytest testAPI --cov=incident --cov-report term-missing"
-
-after_success: "coveralls"
+  - nosetests --with-coverage
+after_success:
+- coveralls
