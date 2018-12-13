@@ -15,8 +15,8 @@ RED_FLAGS = [{
             "type" : "red-flag",
             "location" : "LAT234, LOG342",
             "status" : "draft",
-            "Images" : ["img/image1.jpg", "img/image2.jpg"],
-            "Videos" : ["vid/video1.mp4", "vid/video2.jpg"],
+            "images" : ["img/image1.jpg", "img/image2.jpg"],
+            "videos" : ["vid/video1.mp4", "vid/video2.jpg"],
             "comment" : "It is a long established fact that a reader will be distracted by the readable content of a page"
     },
     {
@@ -27,8 +27,8 @@ RED_FLAGS = [{
             "type" : "red-flag",
             "location" : "LAT234, LOG342",
             "status" : "draft",
-            "Images" : ["img/image1.jpg", "img/image2.jpg"],
-            "Videos" : ["vid/video1.mp4", "vid/video2.jpg"],
+            "images" : ["img/image1.jpg", "img/image2.jpg"],
+            "videos" : ["vid/video1.mp4", "vid/video2.jpg"],
             "comment" : "It is a long established fact that a reader will be distracted by the readable content of a page"
     },
     {
@@ -39,8 +39,8 @@ RED_FLAGS = [{
             "type" : "red-flag",
             "location" : "LAT234, LOG342",
             "status" : "draft",
-            "Images" : ["img/image1.jpg", "img/image2.jpg"],
-            "Videos" : ["vid/video1.mp4", "vid/video2.jpg"],
+            "images" : ["img/image1.jpg", "img/image2.jpg"],
+            "videos" : ["vid/video1.mp4", "vid/video2.jpg"],
             "comment" : "It is a long established fact that a reader will be distracted by the readable content of a page"
     }]
   
@@ -49,18 +49,21 @@ RED_FLAGS = [{
 @app.route("/api/v1/red_flags/", methods=["POST"])
 def add_red_flag():
     """ Should return Status Code:201 if a Red Flag is created"""
-
+    if request.content_type == "application/json":
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()   
     new_red_flag = {    
         "id" : 4,
-        "title" : request.form["title"],
+        "title" : data["title"],
         "createdOn" : get_timestamp(),
-        "createdBy" : request.form["user-id"],
-        "type" : request.form["incident-type"],
-        "location" : request.form["location"],
+        "createdBy" : data["createdBy"],
+        "type" : data["type"],
+        "location" : data["location"],
         "status" : "draft",
-        "Image" : request.form["image"],
-        "Video" : request.form["video"],
-        "comment" : request.form["comment"]
+        "images" : data["images"],
+        "videos" : data["videos"],
+        "comment" : data["comment"]
     }
 
     RED_FLAGS.append(new_red_flag)
@@ -97,12 +100,16 @@ def edit_specific_red_flag(id):
     """ Should return Status Code:200 along with the requested Red Flag |
         Code:404 if there is no Red Flag for the specified id
     """
+    if request.content_type == "application/json":
+        data = request.get_json()
+    else:
+        data = request.form.to_dict()
     for red_flag in RED_FLAGS:
         if red_flag["id"] == id:    
-            red_flag["title"] = request.form["title"]
-            red_flag["Image"] = request.form["image"]
-            red_flag["Video"] = request.form["video"]
-            red_flag["comment"] = request.form["comment"]
+            red_flag["title"] = data["title"]
+            red_flag["images"] = data["images"]
+            red_flag["videos"] = data["videos"]
+            red_flag["comment"] = data["comment"]
 
             return jsonify({"status" : 201, "data" : [{
                                                 "id" :  red_flag["id"], 
