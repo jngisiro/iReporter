@@ -11,7 +11,7 @@ install:
 
 script: 
     - "pytest testAPI.py"
-    - "coverage run --source=incident testAPI.py test"
+    - "pytest --cov=."
     - "nosetests"
 
 after_success: "coveralls"
