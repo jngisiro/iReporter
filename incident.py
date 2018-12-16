@@ -45,10 +45,7 @@ def get_specific_red_flag(id):
     for red_flag in helper.RED_FLAGS:
         if red_flag["id"] == id:
             return jsonify({"status" : helper.STATUS_CODES["success"], "data" : red_flag })
-    return jsonify({
-                    "status" : helper.STATUS_CODES["not_found"], 
-                    "error" : "Red flag with id {} does not exit".format(id)
-                    }), helper.STATUS_CODES["not_found"]
+    return helper.error_404_message(id)
     
 
 #Edit Specific Red Flag ------------------------------------------------------------------
@@ -70,10 +67,7 @@ def edit_specific_red_flag(id):
                                                 "message" : "Updated red-flag comment for id {}".format(red_flag["id"])
                                                 }]
                                             }), helper.STATUS_CODES["success"]
-    return jsonify({
-                    "status" : helper.STATUS_CODES["not_found"], 
-                    "error" : "No record found for red-flag with id {}".format(id)
-                    }), helper.STATUS_CODES["not_found"]
+    return helper.error_404_message(id)
 
 #Delete Specific Red Flag ----------------------------------------------------------------
 @app.route("/api/v1/red_flags/<int:id>/", methods=["DELETE"])
@@ -91,10 +85,7 @@ def delete_specific_red_flag(id):
                         "message" : "red-flag record has been deleted for id {}".format(id)
                         }]
                     })
-    return jsonify({
-                    "status" : helper.STATUS_CODES["not_found"], 
-                    "error" : "No record found for red-flag with id {}".format(id)
-                    }), helper.STATUS_CODES["not_found"]
+    return helper.error_404_message(id)
 
 #------------------------------------------------------------------------------------------
 

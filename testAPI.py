@@ -50,7 +50,7 @@ def test_get_incident_with_invalid_id():
     response = TEST_CLIENT.get("/api/v1/red_flags/5/")
     assert response.status_code == 404
     assert response.get_json()["status"] == response.status_code
-    assert response.get_json()["error"] == "Red flag with id 5 does not exit"
+    assert response.get_json()["error"] == "No record found for red-flag with id 5"
 
 def test_edit_incident(id = 2):
     response = TEST_CLIENT.patch("/api/v1/red_flags/2/", 

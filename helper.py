@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import request
+from flask import request, jsonify
 #Set Date format to be used--------------------------------------------------------------
 def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
@@ -52,3 +52,9 @@ def get_request_json():
         return request.get_json()
     else:
         return request.form.to_dict()
+
+def error_404_message(id):
+    return jsonify({
+            "status" : STATUS_CODES["not_found"], 
+            "error" : "No record found for red-flag with id {}".format(id)
+            }), STATUS_CODES["not_found"]
