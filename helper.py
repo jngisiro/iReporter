@@ -53,6 +53,13 @@ def get_request_json():
     else:
         return request.form.to_dict()
 
+def created_201_message(id, message):
+    return jsonify({"status" : STATUS_CODES["success"], "data" : [{
+                                                "id" :  id, 
+                                                "message" : "{} red-flag record for id {}".format(message, id)
+                                                }]
+                                            }), STATUS_CODES["success"]
+
 def error_404_message(id):
     return jsonify({
             "status" : STATUS_CODES["not_found"], 

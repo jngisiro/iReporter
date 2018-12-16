@@ -22,11 +22,7 @@ def add_red_flag():
     }
 
     helper.RED_FLAGS.append(new_red_flag)
-    return jsonify({"status" : helper.STATUS_CODES["created"], "data" : [{
-                                        "id" :  new_red_flag["id"], 
-                                        "message" : "Created red-flag record with id {}".format(new_red_flag["id"])
-                                        }]
-                                    }), helper.STATUS_CODES["created"]
+    return helper.created_201_message(new_red_flag["id"], "Created")
 
 #Get all Red Flags ------------------------------------------------------------------------
 @app.route("/api/v1/red_flags/", methods=["GET"])
@@ -61,12 +57,7 @@ def edit_specific_red_flag(id):
             red_flag["images"] = data["images"]
             red_flag["videos"] = data["videos"]
             red_flag["comment"] = data["comment"]
-
-            return jsonify({"status" : helper.STATUS_CODES["success"], "data" : [{
-                                                "id" :  red_flag["id"], 
-                                                "message" : "Updated red-flag comment for id {}".format(red_flag["id"])
-                                                }]
-                                            }), helper.STATUS_CODES["success"]
+            return helper.created_201_message(red_flag["id"], "Updated")
     return helper.error_404_message(id)
 
 #Delete Specific Red Flag ----------------------------------------------------------------

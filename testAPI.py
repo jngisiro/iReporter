@@ -19,9 +19,9 @@ test_data = {
 def test_create_incident():
     """ Add a new red-flag """
     response = TEST_CLIENT.post("/api/v1/red_flags/",
-                    data = json.dumps(test_data), content_type="application/json")                      
-    assert response.get_json()["data"][0]["message"][:-2] == "Created red-flag record with id"
-    assert response.content_type == "application/json"
+                    data = json.dumps(test_data), content_type="application/json")            
+    assert response.content_type == "application/json"                          
+    assert response.get_json()["data"][0]["message"][:-2] == "Created red-flag record for id"
 
 def test_created_incident():
     """ Run tests to confirm the incident was created and follows the data rules """
@@ -64,7 +64,7 @@ def test_edit_incident(id = 2):
     assert response.status_code == 200
     assert response.get_json()["status"] == response.status_code
     assert response.get_json()["data"][0]["id"] == id
-    assert response.get_json()["data"][0]["message"] == f"Updated red-flag comment for id {id}"
+    assert response.get_json()["data"][0]["message"] == f"Updated red-flag record for id {id}"
     
 
 def test_editted_incident():
