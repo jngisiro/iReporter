@@ -54,11 +54,11 @@ def get_request_json():
         return request.form.to_dict()
 
 def created_201_message(id, message):
-    return jsonify({"status" : STATUS_CODES["success"], "data" : [{
+    return jsonify({"status" : STATUS_CODES["created"], "data" : [{
                                                 "id" :  id, 
                                                 "message" : "{} red-flag record for id {}".format(message, id)
                                                 }]
-                                            }), STATUS_CODES["success"]
+                                            }), STATUS_CODES["created"]
 
 def error_404_message(id):
     return jsonify({

@@ -19,13 +19,17 @@ test_data = {
 def test_create_incident():
     """ Add a new red-flag """
     response = TEST_CLIENT.post("/api/v1/red_flags/",
-                    data = json.dumps(test_data), content_type="application/json")            
-    assert response.content_type == "application/json"                          
+                    data = json.dumps(test_data), content_type="application/json")   
+    assert response.status_code == 201
+    assert response.content_type == "application/json" 
+    assert response.get_json()["status"] == response.status_code                         
     assert response.get_json()["data"][0]["message"][:-2] == "Created red-flag record for id"
 
 def test_created_incident():
     """ Run tests to confirm the incident was created and follows the data rules """
     response = TEST_CLIENT.get("/api/v1/red_flags/4/")
+    assert response.status_code == 200
+    assert response.content_type == "application/json" 
     assert response.get_json()["data"]["title"] == test_data["title"]
     assert response.get_json()["data"]["createdBy"] == test_data["createdBy"]
     assert response.get_json()["data"]["location"] == test_data["location"]
@@ -37,6 +41,7 @@ def test_created_incident():
 def test_get_all_incidents():
     response = TEST_CLIENT.get("/api/v1/red_flags/")
     assert response.status_code == 200
+    assert response.get_json()["status"] == response.status_code
     assert len(response.get_json()["data"]) == len(incident.helper.RED_FLAGS)
     assert response.get_json()["data"][0]["title"] == incident.helper.RED_FLAGS[0]["title"]
 
@@ -61,7 +66,7 @@ def test_edit_incident(id = 2):
                         "videos" : "corrupt.mp4",
                         "comment" : "Altered the red flag comment"
                     }))
-    assert response.status_code == 200
+    assert response.status_code == 201
     assert response.get_json()["status"] == response.status_code
     assert response.get_json()["data"][0]["id"] == id
     assert response.get_json()["data"][0]["message"] == f"Updated red-flag record for id {id}"
