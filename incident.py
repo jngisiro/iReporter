@@ -6,6 +6,10 @@ def get_timestamp():
 
 app = Flask(__name__)
 
+#Status Codes
+STATUS_CODES = dict(success = 200, created = 201, no_content = 204, bad_request = 400, 
+                    not_found = 404, not_implemented = 501)
+
 #Data to be served over the API ---------------------------------------------------------
 RED_FLAGS = [{
             "id" : 1, 
@@ -71,8 +75,7 @@ def add_red_flag():
                                         "id" :  new_red_flag["id"], 
                                         "message" : "Created red-flag record with id {}".format(new_red_flag["id"])
                                         }]
-                                    })
-    #return jsonify({"status" : 404, "data" : "Not authorized"})
+                                    }), STATUS_CODES["created"]
 
 #Get all Red Flags ------------------------------------------------------------------------
 @app.route("/api/v1/red_flags/", methods=["GET"])
@@ -139,12 +142,10 @@ def delete_specific_red_flag(id):
                         "message" : "red-flag record has been deleted for id {}".format(id)
                         }]
                     })
-    return jsonify({"status" : 404, 
-                    "data" : [{
-                        "id" : id,
-                        "message" : "No record found for red-flag with id {}".format(id)
-                        }]
-                    })
+    return jsonify({
+                    "status" : STATUS_CODES["not_found"], 
+                    "error" : "No record found for red-flag with id {}".format(id)
+                    }), STATUS_CODES["not_found"]
 
 #------------------------------------------------------------------------------------------
 

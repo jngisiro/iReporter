@@ -69,3 +69,10 @@ def test_delete_incident():
     response = TEST_CLIENT.delete("/api/v1/red_flags/1/")
     assert response.status_code == 200
     assert response.get_json()["data"][0]["message"] == "red-flag record has been deleted for id 1"
+
+def test_deleted_incident():
+    """ Run test to confirm the incident has been deleted """
+    response = TEST_CLIENT.delete("/api/v1/red_flags/1/")
+    assert response.status_code == 404
+    assert response.get_json()["status"] == 404
+    assert response.get_json()["error"] == "No record found for red-flag with id 1"
