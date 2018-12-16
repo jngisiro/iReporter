@@ -46,6 +46,12 @@ def test_get_specific_incident():
     assert len(response.get_json()["data"]) == len(incident.RED_FLAGS[0])
     assert response.get_json()["data"]["title"] == incident.RED_FLAGS[0]["title"]
 
+def test_get_incident_with_invalid_id():
+    response = TEST_CLIENT.get("/api/v1/red_flags/5/")
+    assert response.status_code == 404
+    assert response.get_json()["status"] == response.status_code
+    assert response.get_json()["error"] == "Red flag with id 5 does not exit"
+
 def test_edit_incident():
     response = TEST_CLIENT.patch("/api/v1/red_flags/2/", 
                     content_type = "application/json",
