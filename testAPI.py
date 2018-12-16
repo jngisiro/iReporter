@@ -52,7 +52,7 @@ def test_get_incident_with_invalid_id():
     assert response.get_json()["status"] == response.status_code
     assert response.get_json()["error"] == "Red flag with id 5 does not exit"
 
-def test_edit_incident():
+def test_edit_incident(id = 2):
     response = TEST_CLIENT.patch("/api/v1/red_flags/2/", 
                     content_type = "application/json",
                     data = json.dumps({  
@@ -62,6 +62,10 @@ def test_edit_incident():
                         "comment" : "Altered the red flag comment"
                     }))
     assert response.status_code == 200
+    assert response.get_json()["status"] == response.status_code
+    assert response.get_json()["data"][0]["id"] == id
+    assert response.get_json()["data"][0]["message"] == f"Updated red-flag comment for id {id}"
+    
 
 def test_editted_incident():
     """ Run tests to confirm the incident was editted """
@@ -70,6 +74,20 @@ def test_editted_incident():
     assert response.get_json()["data"]["images"] == "corrupt.jpg"
     assert response.get_json()["data"]["videos"] == "corrupt.mp4"
     assert response.get_json()["data"]["comment"] == "Altered the red flag comment" 
+
+def test_edit_incident_with_invalid_id(id=10):
+    response = TEST_CLIENT.patch(f"/api/v1/red_flags/{id}/", 
+                    content_type = "application/json",
+                    data = json.dumps({  
+                        "title" : "Theft a UNRA Kyambogo",
+                        "images" : "corrupt.jpg",
+                        "videos" : "corrupt.mp4",
+                        "comment" : "Altered the red flag comment"
+                    }))
+    assert response.status_code == 404
+    assert response.get_json()["status"] == response.status_code
+    assert response.get_json()["error"] == f"No record found for red-flag with id {id}"
+
 
 def test_delete_incident():
     response = TEST_CLIENT.delete("/api/v1/red_flags/1/")

@@ -71,7 +71,7 @@ def add_red_flag():
     }
 
     RED_FLAGS.append(new_red_flag)
-    return jsonify({"status" : 201, "data" : [{
+    return jsonify({"status" : STATUS_CODES["created"], "data" : [{
                                         "id" :  new_red_flag["id"], 
                                         "message" : "Created red-flag record with id {}".format(new_red_flag["id"])
                                         }]
@@ -96,7 +96,8 @@ def get_specific_red_flag(id):
             return jsonify({"status" : STATUS_CODES["success"], "data" : red_flag })
     return jsonify({
                     "status" : STATUS_CODES["not_found"], 
-                    "error" : "Red flag with id {} does not exit".format(id)}), STATUS_CODES["not_found"]
+                    "error" : "Red flag with id {} does not exit".format(id)
+                    }), STATUS_CODES["not_found"]
     
 
 #Edit Specific Red Flag ------------------------------------------------------------------
@@ -116,15 +117,15 @@ def edit_specific_red_flag(id):
             red_flag["videos"] = data["videos"]
             red_flag["comment"] = data["comment"]
 
-            return jsonify({"status" : 201, "data" : [{
+            return jsonify({"status" : STATUS_CODES["success"], "data" : [{
                                                 "id" :  red_flag["id"], 
                                                 "message" : "Updated red-flag comment for id {}".format(red_flag["id"])
                                                 }]
-                                            })
+                                            }), STATUS_CODES["success"]
     return jsonify({
-                    "status" : STATUS_CODES["not found"], 
+                    "status" : STATUS_CODES["not_found"], 
                     "error" : "No record found for red-flag with id {}".format(id)
-                    }), STATUS_CODES["not found"]
+                    }), STATUS_CODES["not_found"]
 
 #Delete Specific Red Flag ----------------------------------------------------------------
 @app.route("/api/v1/red_flags/<int:id>/", methods=["DELETE"])
