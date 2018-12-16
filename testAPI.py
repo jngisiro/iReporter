@@ -32,9 +32,7 @@ def test_created_incident():
     assert response.get_json()["data"]["status"] == test_data["status"]
     assert response.get_json()["data"]["images"] == test_data["images"]
     assert response.get_json()["data"]["videos"] == test_data["videos"]
-    assert response.get_json()["data"]["comment"] == test_data["comment"]
-  
-    
+    assert response.get_json()["data"]["comment"] == test_data["comment"]   
 
 def test_get_all_incidents():
     response = TEST_CLIENT.get("/api/v1/red_flags/")
@@ -58,6 +56,14 @@ def test_edit_incident():
                         "comment" : "Altered the red flag comment"
                     }))
     assert response.status_code == 200
+
+def test_editted_incident():
+    """ Run tests to confirm the incident was editted """
+    response = TEST_CLIENT.get("/api/v1/red_flags/2/")
+    assert response.get_json()["data"]["title"] == "Theft a UNRA Kyambogo"
+    assert response.get_json()["data"]["images"] == "corrupt.jpg"
+    assert response.get_json()["data"]["videos"] == "corrupt.mp4"
+    assert response.get_json()["data"]["comment"] == "Altered the red flag comment" 
 
 def test_delete_incident():
     response = TEST_CLIENT.delete("/api/v1/red_flags/1/")
